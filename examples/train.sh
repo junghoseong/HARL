@@ -1,1 +1,1 @@
-python train.py --algo happo --env smac --exp_name test
+python train.py --algo hasac --env smac --exp_name render_test_corridor

@@ -67,9 +67,9 @@ model:
   critic_lr: 0.0005
 algo:
   # whether to auto-tune temperature
-  auto_alpha: False
+  auto_alpha: false
   # temperature parameter
-  alpha: 0.001
+  alpha: 0.002
   # alpha learning rate
   alpha_lr: 0.0003
   # discount factor
@@ -81,7 +81,7 @@ algo:
   # coefficient for target model soft update
   polyak: 0.005
   # the number of steps to look ahead
-  n_step: 20
+  n_step: 5
   # whether to use huber loss
   use_huber_loss: True
   # whether to use policy active masks
