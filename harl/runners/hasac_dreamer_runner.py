@@ -246,6 +246,37 @@ class HASACDreamerRunner(OffPolicyHARunner):
             'sp_gamma': torch.full_like(dones, self.algo_args["algo"]["gamma"])
         }
 
+    def get_actions(self, obs, available_actions=None, add_random=True):
+        """Override get_actions to ensure proper handling of available_actions for SMAC."""
+        # Since we inherit from OffPolicyHARunner and use HASAC actors, 
+        # we should use the same logic as the original HASAC
+        actions = []
+        for agent_id in range(self.num_agents):
+            if (
+                available_actions is not None and 
+                len(np.array(available_actions).shape) == 3
+            ):  # (n_threads, n_agents, action_number)
+                # Ensure available_actions is properly formatted
+                agent_available_actions = available_actions[:, agent_id]
+                actions.append(
+                    _t2n(
+                        self.actor[agent_id].get_actions(
+                            obs[:, agent_id],
+                            agent_available_actions,
+                            add_random,
+                        )
+                    )
+                )
+            else:  # (n_threads, ) of None
+                actions.append(
+                    _t2n(
+                        self.actor[agent_id].get_actions(
+                            obs[:, agent_id], stochastic=add_random
+                        )
+                    )
+                )
+        return np.array(actions).transpose(1, 0, 2)
+
     def _combine_data(self, real_data, imagined_data):
         """Combine real and imagined data for training."""
         if imagined_data is None:
@@ -367,7 +398,7 @@ class HASACDreamerRunner(OffPolicyHARunner):
                             (value_pred - self.alpha[agent_id] * logp_action) * sp_valid_transition[agent_id]
                         ) / sp_valid_transition[agent_id].sum()
                     elif self.state_type == "FP":
-                        valid_transition = torch.tile(sp_valid_transition[agent_id], (self.num_agents, 1))
+                        valid_transition = torch.tile(torch.tensor(sp_valid_transition[agent_id], dtype=torch.float32), (self.num_agents, 1))
                         actor_loss = -torch.sum(
                             (value_pred - self.alpha[agent_id] * logp_action) * valid_transition
                         ) / valid_transition.sum()
@@ -399,9 +430,7 @@ class HASACDreamerRunner(OffPolicyHARunner):
             if self.algo_args["algo"]["auto_alpha"]:
                 self.critic.update_alpha(logp_actions, np.sum(self.target_entropy))
             
-            # Soft updates
-            for agent_id in range(self.num_agents):
-                self.actor[agent_id].soft_update()
+            # Soft updates (only for critic, not actors)
             self.critic.soft_update()
 
     def store_transitions(self, obs, share_obs, actions, rewards, dones, infos, available_actions):

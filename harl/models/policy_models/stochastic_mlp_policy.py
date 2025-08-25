@@ -50,14 +50,35 @@ class StochasticMlpPolicy(nn.Module):
         """
         obs = check(obs).to(**self.tpdv)
         deterministic = not stochastic
-        if available_actions is not None:
+        
+        # Handle case where available_actions might be a boolean (stochastic parameter)
+        if available_actions is not None and not isinstance(available_actions, bool):
             available_actions = check(available_actions).to(**self.tpdv)
+        else:
+            available_actions = None
 
         actor_features = self.base(obs)
 
         actions, action_log_probs = self.act(
             actor_features, available_actions, deterministic
         )
+        
+        # Safety check: ensure actions are valid if available_actions is provided
+        if available_actions is not None and not deterministic:
+            # Convert available_actions to boolean mask if needed
+            if isinstance(available_actions, torch.Tensor):
+                mask = available_actions.bool()
+            else:
+                mask = torch.tensor(available_actions, dtype=torch.bool, device=self.tpdv["device"])
+            
+            # For each sample, ensure the action is valid
+            for i in range(actions.shape[0]):
+                if not mask[i, actions[i]]:
+                    # Find a valid action
+                    valid_actions = torch.where(mask[i])[0]
+                    if len(valid_actions) > 0:
+                        actions[i] = valid_actions[torch.randint(0, len(valid_actions), (1,))]
+        
         return actions
 
     def get_logits(self, obs, available_actions=None):
@@ -70,8 +91,12 @@ class StochasticMlpPolicy(nn.Module):
             action_logits: (torch.Tensor) logits of actions for the given inputs.
         """
         obs = check(obs).to(**self.tpdv)
-        if available_actions is not None:
+        
+        # Handle case where available_actions might be a boolean
+        if available_actions is not None and not isinstance(available_actions, bool):
             available_actions = check(available_actions).to(**self.tpdv)
+        else:
+            available_actions = None
 
         actor_features = self.base(obs)
 

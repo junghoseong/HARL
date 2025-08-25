@@ -1,0 +1,67 @@
+{
+  "os": "Linux-6.0.12-76060012-generic-x86_64-with-glibc2.17",
+  "python": "CPython 3.8.20",
+  "startedAt": "2025-08-25T14:34:15.826091Z",
+  "args": [
+    "--env",
+    "smac",
+    "--map_name",
+    "3m"
+  ],
+  "program": "train_hasac_dreamer.py",
+  "codePath": "examples/train_hasac_dreamer.py",
+  "codePathLocal": "train_hasac_dreamer.py",
+  "git": {
+    "remote": "https://github.com/junghoseong/HARL.git",
+    "commit": "35eb216e8feb67d7f7a67ae781e0751ecabe0874"
+  },
+  "email": "aldridge99@snu.ac.kr",
+  "root": "wandb/",
+  "host": "corgi",
+  "executable": "/home/sison-larr/anaconda3/envs/harl/bin/python",
+  "cpu_count": 24,
+  "cpu_count_logical": 48,
+  "gpu": "NVIDIA RTX A5000",
+  "gpu_count": 4,
+  "disk": {
+    "/": {
+      "total": "1967317549056",
+      "used": "1139686772736"
+    }
+  },
+  "memory": {
+    "total": "270129795072"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA RTX A5000",
+      "memoryTotal": "25757220864",
+      "cudaCores": 8192,
+      "architecture": "Ampere",
+      "uuid": "GPU-eff4e167-b4dc-bb1b-d5ec-c9ee058f59d5"
+    },
+    {
+      "name": "NVIDIA RTX A5000",
+      "memoryTotal": "25757220864",
+      "cudaCores": 8192,
+      "architecture": "Ampere",
+      "uuid": "GPU-65fea037-042c-b0be-fc44-d1bd8f7d27e7"
+    },
+    {
+      "name": "NVIDIA RTX A5000",
+      "memoryTotal": "25757220864",
+      "cudaCores": 8192,
+      "architecture": "Ampere",
+      "uuid": "GPU-b9eb7b60-1df2-6f7e-aa62-f0ce3a8111f9"
+    },
+    {
+      "name": "NVIDIA RTX A5000",
+      "memoryTotal": "25757220864",
+      "cudaCores": 8192,
+      "architecture": "Ampere",
+      "uuid": "GPU-b6b5abf5-ab24-401b-1c46-58360e4e4f9e"
+    }
+  ],
+  "cudaVersion": "12.7",
+  "writerId": "808l3bpwgiylld3vzo32dwajvr2xgokk"
+}

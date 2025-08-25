@@ -1,0 +1,94 @@
+{
+    "algo_args":	{
+        "algo":	{
+            "alpha":	0.2,
+            "alpha_lr":	0.0003,
+            "auto_alpha":	true,
+            "batch_size":	1000,
+            "buffer_size":	1000000,
+            "dreamer_actor_lr":	0.0005,
+            "dreamer_batch_size":	32,
+            "dreamer_buffer_size":	100000,
+            "dreamer_centralized":	true,
+            "dreamer_entropy":	0.001,
+            "dreamer_env_type":	"starcraft",
+            "dreamer_expl_decay":	0.99998,
+            "dreamer_expl_min":	0.001,
+            "dreamer_expl_noise":	0.1,
+            "dreamer_gamma":	0.99,
+            "dreamer_horizon":	15,
+            "dreamer_model_batch_size":	32,
+            "dreamer_model_lr":	0.0002,
+            "dreamer_seq_length":	50,
+            "dreamer_train_interval":	10,
+            "dreamer_value_lr":	0.0005,
+            "dreamer_warmup_steps":	1000,
+            "fixed_order":	false,
+            "gamma":	0.99,
+            "huber_delta":	10.0,
+            "imagination_ratio":	0.5,
+            "n_step":	5,
+            "polyak":	0.995,
+            "share_param":	false,
+            "use_dreamer_imagination":	true,
+            "use_huber_loss":	true,
+            "use_policy_active_masks":	true
+        },
+        "device":	{
+            "cuda":	false,
+            "cuda_deterministic":	true,
+            "torch_threads":	4
+        },
+        "eval":	{
+            "eval_episodes":	10,
+            "n_eval_rollout_threads":	1,
+            "use_eval":	true
+        },
+        "logger":	{
+            "log_dir":	"wandb"
+        },
+        "model":	{
+            "activation_func":	"relu",
+            "critic_lr":	0.0005,
+            "final_activation_func":	"tanh",
+            "gain":	0.01,
+            "hidden_sizes":	[
+                256,
+                256
+            ],
+            "initialization_method":	"orthogonal_",
+            "lr":	0.0005,
+            "use_feature_normalization":	true
+        },
+        "render":	{
+            "render_episodes":	1,
+            "use_render":	false
+        },
+        "seed":	{
+            "seed":	1,
+            "seed_specify":	true
+        },
+        "train":	{
+            "eval_interval":	100,
+            "log_interval":	10,
+            "model_dir":	null,
+            "n_rollout_threads":	2,
+            "num_env_steps":	1000000,
+            "train_interval":	1,
+            "update_per_train":	1,
+            "use_linear_lr_decay":	false,
+            "use_proper_time_limits":	true,
+            "use_valuenorm":	true,
+            "warmup_steps":	1000
+        }
+    },
+    "env_args":	{
+        "map_name":	"3m",
+        "state_type":	"FP"
+    },
+    "main_args":	{
+        "algo":	"hasac",
+        "env":	"smac",
+        "exp_name":	"hasac_dreamer_test"
+    }
+}

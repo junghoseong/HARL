@@ -1,32 +1,114 @@
-# HASAC + Dreamer Hybrid Configuration
+# This is the configuration file for the HASAC + Dreamer hybrid algorithm.
+seed:
+  # whether to use the specified seed
+  seed_specify: True
+  # seed
+  seed: 1
+device:
+  # whether to use CUDA
+  cuda: False
+  # whether to set CUDA deterministic
+  cuda_deterministic: True
+  # arg to torch.set_num_threads
+  torch_threads: 4
+train:
+  # number of parallel environments for training data collection
+  n_rollout_threads: 2
+  # number of total steps
+  num_env_steps: 1000000
+  # number of warmup steps
+  warmup_steps: 1000
+  # number of steps per train
+  train_interval: 1
+  # ratio of training iterations to train_interval
+  update_per_train: 1
+  # logging interval (currently unused)
+  log_interval: 10
+  # evaluation interval
+  eval_interval: 100
+  # whether to use ValueNorm
+  use_valuenorm: True
+  # whether to use linear learning rate decay
+  use_linear_lr_decay: False
+  # whether to consider the case of truncation when an episode is done
+  use_proper_time_limits: True
+  # if set, load models from this directory; otherwise, randomly initialise the models
+  model_dir: null
+eval:
+  # whether to use evaluation
+  use_eval: True
+  # number of parallel environments for evaluation
+  n_eval_rollout_threads: 1
+  # number of episodes per evaluation
+  eval_episodes: 10
+render:
+  # whether to use render
+  use_render: False
+  # number of episodes to render
+  render_episodes: 1
+model:
+  # network parameters
+  # hidden sizes for mlp module in the network
+  hidden_sizes: [256, 256]
+  # activation function, choose from sigmoid, tanh, relu, leaky_relu, selu
+  activation_func: relu
+  # whether to use feature normalization
+  use_feature_normalization: True
+  # final activation function, choose from sigmoid, tanh, relu, leaky_relu, selu
+  final_activation_func: tanh
+  # initialization method for network parameters, choose from xavier_uniform_, orthogonal_, ...
+  initialization_method: orthogonal_
+  # gain of the output layer of the network.
+  gain: 0.01
+  # optimizer parameters
+  # actor learning rate
+  lr: 0.0005
+  # critic learning rate
+  critic_lr: 0.0005
 algo:
-  # HASAC parameters (inherited from original HASAC)
-  lr: 5e-4
-  polyak: 0.995
-  gamma: 0.99
-  tau: 0.01
+  # whether to auto-tune temperature
   auto_alpha: true
+  # temperature parameter
   alpha: 0.2
-  target_entropy: -1
-  use_policy_active_masks: true
-  use_value_active_masks: true
-  policy_freq: 2
+  # alpha learning rate
+  alpha_lr: 0.0003
+  # discount factor
+  gamma: 0.99
+  # off-policy buffer size
+  buffer_size: 1000000
+  # training batch size
+  batch_size: 1000
+  # coefficient for target model soft update
+  polyak: 0.995
+  # the number of steps to look ahead
+  n_step: 5
+  # whether to use huber loss
+  use_huber_loss: True
+  # whether to use policy active masks
+  use_policy_active_masks: True
+  # huber delta
+  huber_delta: 10.0
+  # whether to share parameter among actors
+  share_param: False
+  # whether to use a fixed optimisation order
+  fixed_order: False
   
-  # Dreamer integration parameters
-  dreamer_train_interval: 10  # Train Dreamer every N steps
-  imagination_ratio: 0.5      # 50% imagined data in training
-  dreamer_warmup_steps: 1000  # Steps before starting Dreamer training
-  use_dreamer_imagination: true  # Enable Dreamer imagination
-  dreamer_centralized: true      # Use centralized Dreamer architecture
-  
-  # HASAC parameters (inherited from original HASAC)
-  share_param: False          # Whether to share parameters among actors
-  fixed_order: False          # Whether to use fixed optimization order
+  # Dreamer integration parameters (additional to HASAC)
+  # Train Dreamer every N steps
+  dreamer_train_interval: 10
+  # Ratio of imagined data in training (0.0 = no imagination, 1.0 = all imagined)
+  imagination_ratio: 0.5
+  # Steps before starting Dreamer training
+  dreamer_warmup_steps: 1000
+  # Enable Dreamer imagination
+  use_dreamer_imagination: true
+  # Use centralized Dreamer architecture
+  dreamer_centralized: true
   
   # Dreamer model parameters
-  dreamer_model_lr: 2e-4
-  dreamer_actor_lr: 5e-4
-  dreamer_value_lr: 5e-4
+  dreamer_model_lr: 0.0002
+  dreamer_actor_lr: 0.0005
+  dreamer_value_lr: 0.0005
   dreamer_buffer_size: 100000
   dreamer_batch_size: 32
   dreamer_model_batch_size: 32
@@ -38,37 +120,6 @@ algo:
   dreamer_expl_noise: 0.1
   dreamer_expl_min: 0.001
   dreamer_env_type: "starcraft"
-
-train:
-  # Standard training parameters
-  n_rollout_threads: 2
-  episode_length: 60
-  num_env_steps: 1000000
-  batch_size: 64
-  buffer_size: 500000
-  warmup_steps: 1000
-  train_interval: 1
-  log_interval: 10
-  save_interval: 100
-  eval_interval: 100
-  model_dir: null
-
-eval:
-  use_eval: true
-  n_eval_rollout_threads: 1
-  eval_episodes: 10
-
-render:
-  use_render: false
-  render_episodes: 1
-
-device:
-  cuda: false
-  torch_threads: 4
-
-seed:
-  seed: 1
-  seed_specify: true
-
 logger:
+  # logging directory
   log_dir: "wandb"

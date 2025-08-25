@@ -482,6 +482,7 @@ class OffPolicyBaseRunner:
             actions = []
             for agent_id in range(self.num_agents):
                 if (
+                    available_actions is not None and
                     len(np.array(available_actions).shape) == 3
                 ):  # (n_threads, n_agents, action_number)
                     actions.append(
