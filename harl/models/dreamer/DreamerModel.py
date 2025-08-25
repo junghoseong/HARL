@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-from environments import Env
+from harl.models.dreamer.environments import Env
 from harl.models.dreamer.dense import DenseBinaryModel, DenseModel
 from harl.models.dreamer.vae import Encoder, Decoder
 from harl.models.dreamer.rnns import RSSMRepresentation, RSSMTransition

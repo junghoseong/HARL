@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 
-from environments import Env
+from harl.models.dreamer.environments import Env
 
 
 class DreamerMemory:

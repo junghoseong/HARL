@@ -5,7 +5,7 @@ import torch.nn as nn
 
 class PositionalEncoding(nn.Module):
     def __init__(self, d_hidden, n_positions=2):
-        super(PositionalEncoding, self).__init()
+        super(PositionalEncoding, self).__init__()
         # Not a parameter
         self.register_buffer('pos_enc', self._get_sinusoid_encoding_table(n_positions, d_hidden))
     

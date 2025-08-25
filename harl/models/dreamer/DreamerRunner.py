@@ -1,7 +1,7 @@
 import ray
 import wandb
 
-from agent.workers.DreamerWorker import DreamerWorker
+from harl.models.dreamer.DreamerWorker import DreamerWorker
 
 
 class DreamerServer:

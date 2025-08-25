@@ -9,7 +9,7 @@ from harl.models.dreamer.DreamerMemory import DreamerMemory
 from harl.models.dreamer.DreamerModel import DreamerModel
 from harl.models.dreamer.DreamerLoss import model_loss, actor_loss, value_loss, actor_rollout
 from harl.models.dreamer.utils import advantage
-from environments import Env
+from harl.models.dreamer.environments import Env
 from harl.models.dreamer.action import Actor
 from harl.models.dreamer.critic import AugmentedCritic
 

@@ -6,7 +6,6 @@ from harl.algorithms.critics.soft_twin_continuous_q_critic import (
     SoftTwinContinuousQCritic,
 )
 from harl.algorithms.critics.discrete_q_critic import DiscreteQCritic
-
 CRITIC_REGISTRY = {
     "happo": VCritic,
     "hatrpo": VCritic,

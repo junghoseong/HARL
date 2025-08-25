@@ -4,6 +4,7 @@ import torch
 import torch.distributions as td
 import torch.nn.functional as F
 from collections.abc import Iterable
+from harl.models.dreamer.environments import Env
 
 RSSM_STATE_MODE = 'discrete'
 
@@ -51,8 +52,16 @@ class DreamerConfig(Config):
         self.GAMMA = 0.99
         self.DISCOUNT = 0.99
         self.DISCOUNT_LAMBDA = 0.95
+        # Learning rates
+        self.VALUE_LR = 5e-4
         self.IN_DIM = 30
         self.LOG_FOLDER = 'wandb/'
+        # Environment type
+        self.ENV_TYPE = Env.STARCRAFT  # Default to STARCRAFT, can be overridden
+        # Exploration parameters
+        self.EXPL_DECAY = 0.99998
+        self.EXPL_NOISE = 0.1
+        self.EXPL_MIN = 0.001
 
 
 @dataclass

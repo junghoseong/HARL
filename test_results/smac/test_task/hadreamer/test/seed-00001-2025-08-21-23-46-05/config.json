@@ -1,0 +1,70 @@
+{
+    "algo_args":	{
+        "algo":	{
+            "actor_lr":	0.0005,
+            "batch_size":	10,
+            "buffer_size":	1000,
+            "entropy":	0.001,
+            "gamma":	0.99,
+            "horizon":	10,
+            "model_batch_size":	10,
+            "model_lr":	0.0002,
+            "seq_length":	20,
+            "value_lr":	0.0005
+        },
+        "device":	{
+            "cuda":	false,
+            "torch_threads":	4
+        },
+        "eval":	{
+            "eval_episodes":	5,
+            "n_eval_rollout_threads":	2,
+            "use_eval":	false
+        },
+        "logger":	{
+            "log_dir":	"./test_results"
+        },
+        "model":	{
+            "activation_func":	"relu",
+            "final_activation_func":	"tanh",
+            "gain":	0.01,
+            "hidden_sizes":	[
+                256,
+                256
+            ],
+            "initialization_method":	"orthogonal_",
+            "use_feature_normalization":	true
+        },
+        "render":	{
+            "render_episodes":	1,
+            "use_render":	false
+        },
+        "seed":	{
+            "seed":	1,
+            "seed_specify":	true
+        },
+        "train":	{
+            "episode_length":	50,
+            "log_interval":	10,
+            "model_dir":	null,
+            "n_rollout_threads":	2,
+            "num_env_steps":	1000,
+            "train_interval":	10,
+            "use_linear_lr_decay":	false,
+            "use_proper_time_limits":	true,
+            "use_valuenorm":	true,
+            "warmup_steps":	100
+        }
+    },
+    "env_args":	{
+        "episode_limit":	60,
+        "map_name":	"3m",
+        "n_agents":	3,
+        "state_type":	"EP"
+    },
+    "main_args":	{
+        "algo":	"hadreamer",
+        "env":	"smac",
+        "exp_name":	"test"
+    }
+}

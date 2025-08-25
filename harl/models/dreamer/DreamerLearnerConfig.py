@@ -8,6 +8,8 @@ class DreamerLearnerConfig(DreamerConfig):
         self.MODEL_LR = 2e-4
         self.ACTOR_LR = 5e-4
         self.VALUE_LR = 5e-4
+        # Make sure VALUE_LR is also set in the parent config
+        self.VALUE_LR = 5e-4
         self.CAPACITY = 500000
         self.MIN_BUFFER_SIZE = 100
         self.MODEL_EPOCHS = 1

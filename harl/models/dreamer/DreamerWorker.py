@@ -5,7 +5,7 @@ import torch
 from flatland.envs.agent_utils import RailAgentStatus
 from collections import defaultdict
 
-from environments import Env
+from harl.models.dreamer.environments import Env
 
 
 @ray.remote

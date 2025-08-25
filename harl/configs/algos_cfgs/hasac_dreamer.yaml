@@ -1,0 +1,74 @@
+# HASAC + Dreamer Hybrid Configuration
+algo:
+  # HASAC parameters (inherited from original HASAC)
+  lr: 5e-4
+  polyak: 0.995
+  gamma: 0.99
+  tau: 0.01
+  auto_alpha: true
+  alpha: 0.2
+  target_entropy: -1
+  use_policy_active_masks: true
+  use_value_active_masks: true
+  policy_freq: 2
+  
+  # Dreamer integration parameters
+  dreamer_train_interval: 10  # Train Dreamer every N steps
+  imagination_ratio: 0.5      # 50% imagined data in training
+  dreamer_warmup_steps: 1000  # Steps before starting Dreamer training
+  use_dreamer_imagination: true  # Enable Dreamer imagination
+  dreamer_centralized: true      # Use centralized Dreamer architecture
+  
+  # HASAC parameters (inherited from original HASAC)
+  share_param: False          # Whether to share parameters among actors
+  fixed_order: False          # Whether to use fixed optimization order
+  
+  # Dreamer model parameters
+  dreamer_model_lr: 2e-4
+  dreamer_actor_lr: 5e-4
+  dreamer_value_lr: 5e-4
+  dreamer_buffer_size: 100000
+  dreamer_batch_size: 32
+  dreamer_model_batch_size: 32
+  dreamer_seq_length: 50
+  dreamer_horizon: 15
+  dreamer_entropy: 0.001
+  dreamer_gamma: 0.99
+  dreamer_expl_decay: 0.99998
+  dreamer_expl_noise: 0.1
+  dreamer_expl_min: 0.001
+  dreamer_env_type: "starcraft"
+
+train:
+  # Standard training parameters
+  n_rollout_threads: 2
+  episode_length: 60
+  num_env_steps: 1000000
+  batch_size: 64
+  buffer_size: 500000
+  warmup_steps: 1000
+  train_interval: 1
+  log_interval: 10
+  save_interval: 100
+  eval_interval: 100
+  model_dir: null
+
+eval:
+  use_eval: true
+  n_eval_rollout_threads: 1
+  eval_episodes: 10
+
+render:
+  use_render: false
+  render_episodes: 1
+
+device:
+  cuda: false
+  torch_threads: 4
+
+seed:
+  seed: 1
+  seed_specify: true
+
+logger:
+  log_dir: "wandb"

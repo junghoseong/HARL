@@ -1,0 +1,62 @@
+_wandb:
+    value:
+        cli_version: 0.21.1
+        e:
+            en9s3wc0f69yzrxu72r61yz14u97st5c:
+                codePath: test_hasac_dreamer_integration.py
+                codePathLocal: test_hasac_dreamer_integration.py
+                cpu_count: 24
+                cpu_count_logical: 48
+                cudaVersion: "12.7"
+                disk:
+                    /:
+                        total: "1967317549056"
+                        used: "1139253293056"
+                email: aldridge99@snu.ac.kr
+                executable: /home/sison-larr/anaconda3/envs/harl/bin/python
+                git:
+                    commit: 4d4242e29ff244e6889a1eed227d9913ea4912fb
+                    remote: https://github.com/junghoseong/HARL.git
+                gpu: NVIDIA RTX A5000
+                gpu_count: 4
+                gpu_nvidia:
+                    - architecture: Ampere
+                      cudaCores: 8192
+                      memoryTotal: "25757220864"
+                      name: NVIDIA RTX A5000
+                      uuid: GPU-eff4e167-b4dc-bb1b-d5ec-c9ee058f59d5
+                    - architecture: Ampere
+                      cudaCores: 8192
+                      memoryTotal: "25757220864"
+                      name: NVIDIA RTX A5000
+                      uuid: GPU-65fea037-042c-b0be-fc44-d1bd8f7d27e7
+                    - architecture: Ampere
+                      cudaCores: 8192
+                      memoryTotal: "25757220864"
+                      name: NVIDIA RTX A5000
+                      uuid: GPU-b9eb7b60-1df2-6f7e-aa62-f0ce3a8111f9
+                    - architecture: Ampere
+                      cudaCores: 8192
+                      memoryTotal: "25757220864"
+                      name: NVIDIA RTX A5000
+                      uuid: GPU-b6b5abf5-ab24-401b-1c46-58360e4e4f9e
+                host: corgi
+                memory:
+                    total: "270129795072"
+                os: Linux-6.0.12-76060012-generic-x86_64-with-glibc2.17
+                program: test_hasac_dreamer_integration.py
+                python: CPython 3.8.20
+                root: wandb/
+                startedAt: "2025-08-25T14:01:38.235741Z"
+                writerId: en9s3wc0f69yzrxu72r61yz14u97st5c
+        m: []
+        python_version: 3.8.20
+        t:
+            "1":
+                - 1
+            "2":
+                - 1
+            "4": 3.8.20
+            "5": 0.21.1
+            "12": 0.21.1
+            "13": linux-x86_64

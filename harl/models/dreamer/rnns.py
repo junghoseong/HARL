@@ -2,8 +2,8 @@ import torch
 import torch.nn as nn
 from torch.distributions import OneHotCategorical
 
-from configs.dreamer.DreamerAgentConfig import RSSMState
-from harl.models.transformers import AttentionEncoder
+from harl.models.dreamer.DreamerAgentConfig import RSSMState
+from harl.models.base.transformers import AttentionEncoder
 
 
 def stack_states(rssm_states: list, dim):

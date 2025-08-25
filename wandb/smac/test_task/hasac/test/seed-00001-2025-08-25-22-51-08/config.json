@@ -1,0 +1,77 @@
+{
+    "algo_args":	{
+        "algo":	{
+            "alpha":	0.2,
+            "auto_alpha":	true,
+            "dreamer_actor_lr":	0.0005,
+            "dreamer_batch_size":	32,
+            "dreamer_buffer_size":	100000,
+            "dreamer_entropy":	0.001,
+            "dreamer_env_type":	"starcraft",
+            "dreamer_expl_decay":	0.99998,
+            "dreamer_expl_min":	0.001,
+            "dreamer_expl_noise":	0.1,
+            "dreamer_gamma":	0.99,
+            "dreamer_horizon":	15,
+            "dreamer_model_batch_size":	32,
+            "dreamer_model_lr":	0.0002,
+            "dreamer_seq_length":	50,
+            "dreamer_train_interval":	10,
+            "dreamer_value_lr":	0.0005,
+            "fixed_order":	false,
+            "gamma":	0.99,
+            "imagination_ratio":	0.5,
+            "lr":	0.0005,
+            "policy_freq":	2,
+            "polyak":	0.995,
+            "share_param":	false,
+            "target_entropy":	-1,
+            "use_policy_active_masks":	true,
+            "use_value_active_masks":	true
+        },
+        "device":	{
+            "cuda":	false,
+            "torch_threads":	4
+        },
+        "eval":	{
+            "eval_episodes":	10,
+            "n_eval_rollout_threads":	1,
+            "use_eval":	true
+        },
+        "logger":	{
+            "log_dir":	"wandb"
+        },
+        "render":	{
+            "render_episodes":	1,
+            "use_render":	false
+        },
+        "seed":	{
+            "seed":	1,
+            "seed_specify":	true
+        },
+        "train":	{
+            "batch_size":	64,
+            "buffer_size":	500000,
+            "episode_length":	60,
+            "eval_interval":	100,
+            "log_interval":	10,
+            "model_dir":	null,
+            "n_rollout_threads":	2,
+            "num_env_steps":	1000000,
+            "save_interval":	100,
+            "train_interval":	1,
+            "warmup_steps":	1000
+        }
+    },
+    "env_args":	{
+        "episode_limit":	60,
+        "map_name":	"3m",
+        "n_agents":	3,
+        "state_type":	"FP"
+    },
+    "main_args":	{
+        "algo":	"hasac",
+        "env":	"smac",
+        "exp_name":	"test"
+    }
+}
